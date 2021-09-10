@@ -10,6 +10,10 @@ class UserController {
             message: "User successfully registered"
         })
     }
+
+    logout(req, res){
+        res.json({message:'User logout successfully'})
+    }
 }
 
 module.exports = new UserController()
