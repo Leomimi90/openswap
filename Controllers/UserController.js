@@ -1,30 +1,53 @@
+var getRepository = require('typeorm').getRepository;
+var User = require('../Entities/User');
 class UserController {
-
     index(req, res, next) {
-        res.json({ users: [] });
+        var users = [];
+        // uses getRepository to find all users from the database
+        getRepository(User).find().then((doc) => {
+            users = doc;
+            res.json(users);
+        })
     }
 
     register(req, res, next) {
-        res.json({
-            success: true,
-            data: [],
-            message: "User successfully registered"
+        // res.json({
+        //     success: true,
+        //     data: [],
+        //     message: "User successfully registered"
+        // })
+
+        // create a random user object to be saved in the database
+        var newUser = {
+            name:"Lorem Guy 1",
+            phone_number:600000000,
+            email:"lorem@gmail.com",
+            password:"lorem123456789",
+        }
+
+        // saves the new user in the database and responds with the user that has been saved
+        getRepository(User).save(newUser)
+        .then((user) => {
+            res.json(user);
+        })
+        .catch((err) => {
+            console.log(err);
         })
     }
-
-
     login(req, res, next) {
-        res.json({
-            success: true,
-            data: [],
-            message: "login successfully, you will be redirected to your account shortly"
-        })
-    }
+        // res.json({
+        //     success: true,
+        //     data: [],
+        //     message: "login successfully, you will be redirected to your account shortly"
+        // })
 
-    logout(req,res,next){
-        res.json({
-        success: true,
-        message:"User logged out"
+        // finds a single user with a given email and password
+        getRepository(User).findOne({email:"lorem@gmail.com", password:"lorem123456789"})
+        .then((user) => {
+            res.json(user);
+        })
+        .catch((err) => {
+            console.log(err);
         })
     }
 
