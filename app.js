@@ -20,7 +20,7 @@ var connection = typeorm.createConnection({
     "password": process.env.DB_PASS,
     "database": process.env.DB_NAME,
     "entities": [
-        "src/entity/*.js"
+        "entity/*.js"
     ],
     "logging": true,
     "synchronize": true
