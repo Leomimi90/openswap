@@ -1,5 +1,5 @@
 var getRepository = require('typeorm').getRepository;
-var User = require('../Entities/User');
+var User = require("../Entities/User");
 class UserController {
     index(req, res, next) {
         var users = [];
@@ -11,37 +11,17 @@ class UserController {
     }
 
     register(req, res, next) {
-        // res.json({
-        //     success: true,
-        //     data: [],
-        //     message: "User successfully registered"
-        // })
-
-        // create a random user object to be saved in the database
-        var newUser = {
-            name:"Lorem Guy 1",
-            phone_number:600000000,
-            email:"lorem@gmail.com",
-            password:"lorem123456789",
-        }
-
-        // saves the new user in the database and responds with the user that has been saved
-        getRepository(User).save(newUser)
+        let user = req.body.user;
+        getRepository(User).save(user)
         .then((user) => {
             res.json(user);
         })
         .catch((err) => {
-            console.log(err);
+            res.json(err);
         })
     }
-    login(req, res, next) {
-        // res.json({
-        //     success: true,
-        //     data: [],
-        //     message: "login successfully, you will be redirected to your account shortly"
-        // })
 
-        // finds a single user with a given email and password
+    logIn(req, res, next) {
         getRepository(User).findOne({email:"lorem@gmail.com", password:"lorem123456789"})
         .then((user) => {
             res.json(user);
@@ -64,6 +44,10 @@ class UserController {
             }
         })
     }
+
+   logOut(req, res, next) {
+       res.json({'status':'0k'})
+   }
   
 }
 

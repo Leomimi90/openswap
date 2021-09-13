@@ -1,4 +1,5 @@
 var EntitySchema = require("typeorm").EntitySchema;
+// const User = require("../Models/User").User;
 
 module.exports = new EntitySchema({
     name: "User", // Will use table name `category` as default behaviour.
@@ -9,7 +10,10 @@ module.exports = new EntitySchema({
             type: "int",
             generated: true
         },
-        name: {
+        firstName: {
+            type: "varchar"
+        },
+        lastName: {
             type: "varchar"
         },
         email: {
@@ -18,7 +22,7 @@ module.exports = new EntitySchema({
         password:{
             type:"varchar"
         },
-        phone_number: {
+        phoneNumber: {
             type:"int"
         },
     }

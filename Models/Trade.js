@@ -1,5 +1,5 @@
 class Trade {
-    constructor(id, cryptocurrency, type, wallet, status){
+    constructor(id, cryptocurrency, type, wallet, status) {
         this.id = id;
         this.cryptocurrency = cryptocurrency;
         this.type = type;
@@ -9,5 +9,5 @@ class Trade {
 }
 
 module.exports = {
-    Trade: Trade
+    Trade: new Trade()
 };

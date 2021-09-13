@@ -1,10 +1,10 @@
 const Trade = require("../Models/Trade").Trade;
 const EntitySchema = require("typeorm").EntitySchema; 
-const User = require("../Models/User").User;
+// const User = require("../Models/User").User;
 
 module.exports = new EntitySchema({
     name: "Trade",
-    target: Trade,
+    tableName: "trades", 
     columns: {
         id: {
             primary: true,
@@ -18,12 +18,12 @@ module.exports = new EntitySchema({
             type: "text"
         }
     },
-    relations: {
-        user: {
-            target: User,
-            type: "many-to-one",
-            joinTable: true,
-            cascade: true
-        }
-    }
+    // relations: {
+    //     user: {
+    //         target: User,
+    //         type: "many-to-one",
+    //         joinTable: true,
+    //         cascade: true
+    //     }
+    // }
 });

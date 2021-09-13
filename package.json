@@ -5,7 +5,8 @@
   "scripts": {
     "test": "node ./app.test.js",
     "start": "node ./public/serve",
-    "dev": "nodemon ./public/serve"
+    "dev": "nodemon ./public/serve",
+    "typeorm": "node ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
