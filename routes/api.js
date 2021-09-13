@@ -14,14 +14,14 @@ router.get('/help', PublicController.help);
 /* User Routes */
 router.get('/users', UserController.index);
 router.get('/users/register', UserController.register);
-router.get('/user/logout', UserController.logout)
+// router.get('/user/logout', UserController.logout)
 
 /* Transactions Routes*/
 router.get('/transaction/buy/:id', TransactionController.buy)
 router.get('/transaction/sell/:id', TransactionController.sell)
 router.get('/user/login', UserController.login);
 router.get('/user/account', UserController.account);
-router.get('/user/logout', UserController.logout)
+// router.get('/user/logout', UserController.logout)
 
 /* Trade Routes */
 router.get('/trades', TradeController.index);

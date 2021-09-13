@@ -1,5 +1,5 @@
 var getRepository = require('typeorm').getRepository;
-var User = require('../entity/User');
+var User = require('../Entities/User');
 class UserController {
     index(req, res, next) {
         var users = [];
