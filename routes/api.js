@@ -12,8 +12,12 @@ router.get('/users', UserController.index);
 router.get('/users/register', UserController.register);
 
 /* Transaction Routes*/
-router.get('/transaction/sale/:id', TransactionController.sale)
-router.get('/transaction/purchase/:id', TransactionController.purchase)
+router.get('/transaction/sale/:id', TransactionController.sale);
+router.get('/transaction/purchase/:id', TransactionController.purchase);
+
+/* CryptoCurrency*/
+
+
 
 /* Trade Routes */
 router.get('/trades', TradeController.index);
