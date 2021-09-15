@@ -10,6 +10,12 @@ class UserController {
             message: "User successfully registered"
         })
     }
+
+
+  resetPassword(res, req, next)  {
+
+    }
 }
+
 
 module.exports = new UserController()
