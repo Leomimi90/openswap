@@ -1,5 +1,7 @@
-var getRepository = require('typeorm').getRepository;
-var User = require("../Entities/User");
+// var getRepository = require('typeorm').getRepository;
+// var User = require("../Entities/User");
+const db = require('../src/models/index')
+
 class UserController {
     index(req, res, next) {
         var users = [];
@@ -10,15 +12,22 @@ class UserController {
         })
     }
 
-    register(req, res, next) {
-        let user = req.body.user;
-        getRepository(User).save(user)
-        .then((user) => {
-            res.json(user);
-        })
-        .catch((err) => {
-            res.json(err);
-        })
+   async register(req, res) {
+        // let user = req.body.user;
+        // getRepository(User).save(user)
+        // .then((user) => {
+        //     res.json(user);
+        // })
+        // .catch((err) => {
+        //     res.json(err);
+        // })
+        try {
+            const user = req.body;
+            await db.User.create(user)
+            res.status(200).json(user)
+        } catch (error) {
+            res.status(500).json({message:error})
+        }
     }
 
     logIn(req, res, next) {
