@@ -1,13 +1,29 @@
-class Trade {
-    constructor(id, cryptocurrency, type, wallet, status) {
-        this.id = id;
-        this.cryptocurrency = cryptocurrency;
-        this.type = type;
-        this.wallet = wallet;
-        this.status = status;
-    }
-}
 
-module.exports = {
-    Trade: new Trade()
+'use strict';
+const { Model, DataTypes } = require('sequelize');
+const { sequelize } = require('../config/conectDB');
+const bcrypt = require("bcrypt")
+
+class Trade extends Model {
+
+    static associate(models) {
+        // define association here
+    }
+
+    validPassword(password) {
+        return bcrypt.compareSync(password, this.password);
+    }
 };
+
+Trade.init({
+    currency: DataTypes.STRING,
+    type: DataTypes.STRING,
+    amount: DataTypes.FLOAT,
+    user_id: DataTypes.BIGINT
+}, {
+    sequelize,
+    modelName: 'Trade',
+});
+
+
+module.exports = Trade;

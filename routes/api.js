@@ -27,7 +27,7 @@ router.get('/transaction/sell/:id', TransactionController.sell)
 
 /* Trade Routes */
 router.get('/trades', TradeController.index);
-router.post('/trade', TradeController.save);
+router.post('/trade', auth, TradeController.save);
 router.post('/confirmTrade', TradeController.confirmTrade);
 
 /*CryptoCurrency Routes */
