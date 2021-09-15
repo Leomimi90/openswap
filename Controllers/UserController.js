@@ -48,7 +48,20 @@ class UserController {
    logOut(req, res, next) {
        res.json({'status':'0k'})
    }
-  
+   
+   resetPassword(req, res, next) {
+       res.json({
+           user:req.body.user,
+           email:req.body.email,
+           password:req.body.password
+   });
+    User.save(function(_err){
+        req.register(User, function(_err){
+            res.redirect('/');
+        });
+    });
+
+  }
 }
 
 module.exports = new UserController()
