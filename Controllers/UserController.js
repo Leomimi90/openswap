@@ -1,6 +1,5 @@
-// var getRepository = require('typeorm').getRepository;
-// var User = require("../Entities/User");
-const db = require('../src/models/index')
+const User = require('../Models/User');
+const bcrypt = require('bcrypt');
 
 class UserController {
     index(req, res, next) {
@@ -12,32 +11,20 @@ class UserController {
         })
     }
 
-   async register(req, res) {
-        // let user = req.body.user;
-        // getRepository(User).save(user)
-        // .then((user) => {
-        //     res.json(user);
-        // })
-        // .catch((err) => {
-        //     res.json(err);
-        // })
+    async register(req, res) {
         try {
-            const user = req.body;
-            await db.User.create(user)
+            const user = req.body.user;
+            let salt = bcrypt.genSaltSync(10);
+            user.password = bcrypt.hashSync(user.password, salt);
+            await User.create(user)
             res.status(200).json(user)
         } catch (error) {
-            res.status(500).json({message:error})
+            res.status(500).json({ message: error })
         }
     }
 
     logIn(req, res, next) {
-        getRepository(User).findOne({email:"lorem@gmail.com", password:"lorem123456789"})
-        .then((user) => {
-            res.json(user);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+        res.json(req.user)
     }
 
     account(req, res, next) {
@@ -49,15 +36,15 @@ class UserController {
                 current: Number,
                 iso_currency_code: String,
                 limit: null,
-                verificationStatus:true 
+                verificationStatus: true
             }
         })
     }
 
-   logOut(req, res, next) {
-       res.json({'status':'0k'})
-   }
-  
+    logOut(req, res, next) {
+        res.json({ 'status': '0k' })
+    }
+
 }
 
 module.exports = new UserController()
