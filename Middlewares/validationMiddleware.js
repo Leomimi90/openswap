@@ -1,6 +1,6 @@
 const { body, checkSchema, validationResult } = require('express-validator');
 
-const loginValidationRules = () => {
+const registerValidationRules = () => {
     return checkSchema({
         'user.email': {
             isEmail: {
@@ -29,6 +29,6 @@ const validate = (req, res, next) => {
 }
 
 module.exports = {
-    loginValidationRules,
+    registerValidationRules,
     validate,
 }
