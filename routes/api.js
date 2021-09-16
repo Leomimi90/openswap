@@ -7,6 +7,7 @@ var TradeController = require('../Controllers/TradeController');
 const CryptoCurrencyController = require('../Controllers/CryptoCurrencyController');
 const TransactionController = require('../Controllers/TransactionController');
 const auth = require("../Middlewares/AuthMiddleware").authenticate('basic', { session: false });
+const { loginValidationRules, validate } = require('../Middlewares/validationMiddleware');
 
 
 router.get('/', PublicController.index);
@@ -14,7 +15,7 @@ router.get('/help', PublicController.help);
 
 /* User Routes */
 router.get('/users', UserController.index);
-router.post('/users/register', UserController.register);
+router.post('/users/register', loginValidationRules(), validate, UserController.register);
 router.post('/users/login', auth, UserController.logIn);
 router.get('/users/logout', UserController.logOut)
 router.get('/users/account', UserController.account);
